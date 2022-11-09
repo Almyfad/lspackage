@@ -51,7 +51,7 @@ class LSTimePicker extends StatelessWidget {
           );
           if (regExp.hasMatch(cdata.text ?? "")) {
             var match = regExp.firstMatch(cdata.text ?? "");
-            value= TimeOfDay(
+            value = TimeOfDay(
                 hour: int.parse(match!.group(1) ?? "00"),
                 minute: int.parse(match.group(3) ?? "00"));
           }

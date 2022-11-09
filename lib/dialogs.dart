@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LsDialog {
-  static Future<bool?> confirm(
-    BuildContext context,
-    String msg, {
-    String title = "",
-    Color? cancelButtonColor
-  }) {
+  static Future<bool?> confirm(BuildContext context, String msg,
+      {String title = "", Color? cancelButtonColor}) {
     return showDialog<bool>(
       context: context,
       barrierDismissible: false,
@@ -17,7 +13,8 @@ class LsDialog {
           actions: <Widget>[
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor:cancelButtonColor ?? Theme.of(context).errorColor),
+                  backgroundColor:
+                      cancelButtonColor ?? Theme.of(context).errorColor),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
