@@ -59,8 +59,8 @@ class LsDatetimePicker extends StatelessWidget {
       enabled: enabled,
       keyboardType: TextInputType.datetime,
       onTap: () async {
-        var d = await showpicker(DateTime.now());
-        pcontroller.text = formatDate(d)?? "";
+        var d = await showpicker(initialValue ?? DateTime.now());
+        pcontroller.text = formatDate(d) ?? "";
         if (onDatePicked != null) onDatePicked!(d);
       },
       validator: validator,
