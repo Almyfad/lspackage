@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 
 class LSTimePicker extends StatelessWidget {
   final String? Function(String?)? validator;
@@ -41,9 +41,9 @@ class LSTimePicker extends StatelessWidget {
       keyboardType: TextInputType.datetime,
       onTap: () async {
         var value = initialValue;
-        ClipboardData? cdata = await Clipboard.getData(Clipboard.kTextPlain);
+      //  ClipboardData? cdata = await Clipboard.getData(Clipboard.kTextPlain);
 
-        if (cdata != null) {
+     /*   if (cdata != null) {
           RegExp regExp = RegExp(
             r"^.*([0-1]?[0-9]|2[0-3])(:|h|H)([0-5][0-9]).*$",
             caseSensitive: false,
@@ -55,7 +55,7 @@ class LSTimePicker extends StatelessWidget {
                 hour: int.parse(match!.group(1) ?? "00"),
                 minute: int.parse(match.group(3) ?? "00"));
           }
-        }
+        }*/
 
         var d = await showTimePicker(
             context: context,
