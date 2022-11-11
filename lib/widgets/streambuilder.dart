@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lspackage/somethingwentwrong.dart';
+import 'package:lspackage/widgets/somethingwentwrong.dart';
 
 class LSStreamBuilder<T> extends StatelessWidget {
   final Stream<T> stream;
