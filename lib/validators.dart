@@ -21,7 +21,7 @@ class RequiredValidator extends Validators {
         if ((pattern as String).isNotEmpty) return true;
         break;
       default:
-        if (pattern == null) return false;
+        return pattern != null;
     }
     return false;
   }
