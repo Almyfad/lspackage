@@ -6,7 +6,7 @@ class LSStreamBuilder<T> extends StatelessWidget {
   final Widget? progressIndicator;
   final Widget? noelement;
   final Widget? error;
-  final Widget Function(BuildContext, AsyncSnapshot<T>) builder;
+  final Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) builder;
 
   const LSStreamBuilder(
       {Key? key,
