@@ -1,7 +1,8 @@
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lspackage/classes/dateinputformatter.dart';
+import 'package:lspackage/classes/dateinput.formatter.dart';
 import 'package:lspackage/widgets/popupitemnoinkwell.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
@@ -18,6 +19,9 @@ class LSDatePicker extends StatelessWidget {
   final Widget? prefixIcon;
   final LSDatePickerController? controller;
   final ValueChanged<DateTime?>? onchanged;
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
+
   const LSDatePicker({
     Key? key,
     this.enabled = true,
@@ -25,6 +29,8 @@ class LSDatePicker extends StatelessWidget {
     this.prefixIcon,
     this.controller,
     this.onchanged,
+    this.validator,
+    this.autovalidateMode,
   }) : super(key: key);
 
   String formatValue(DateTime? d) =>
@@ -39,6 +45,8 @@ class LSDatePicker extends StatelessWidget {
 
     return LayoutBuilder(builder: (context, constraints) {
       return TextFormField(
+        validator: validator,
+        autovalidateMode: autovalidateMode,
         controller: stringcontroller,
         keyboardType: TextInputType.number,
         onChanged: (value) {
@@ -54,12 +62,13 @@ class LSDatePicker extends StatelessWidget {
             enabled: enabled,
             hintText: "--/--/---",
             suffixIcon: PopupMenuButton(
-              constraints: BoxConstraints(maxWidth: constraints.maxWidth),
+              icon: const Icon(Icons.calendar_month),
+              constraints: BoxConstraints(maxWidth: max(constraints.maxWidth,300),),
               itemBuilder: (context) {
                 return [
                   PopupItemNoInkWell(
                     child: SizedBox(
-                        width: constraints.maxWidth,
+                        width: max(constraints.maxWidth,300),
                         child: SfDateRangePicker(
                           enablePastDates: true,
                           allowViewNavigation: true,
@@ -80,4 +89,3 @@ class LSDatePicker extends StatelessWidget {
     });
   }
 }
-

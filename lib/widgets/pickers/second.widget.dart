@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class MinutePicker extends StatelessWidget {
+class LSSecondPicker extends StatelessWidget {
   final int value;
   final bool enabled;
-  final Function(int?) onPicked;
-  const MinutePicker({Key? key, required this.value, required this.onPicked, this.enabled = true}) : super(key: key);
+  final Function(int? second) onPicked;
+  const LSSecondPicker(
+      {Key? key,
+      required this.value,
+      required this.onPicked,
+      this.enabled = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +19,13 @@ class MinutePicker extends StatelessWidget {
           enabled: false,
           initialValue: value.toString(),
           decoration: const InputDecoration(
-            label: Text("Heure"),
+            label: Text("Seconde"),
           ));
     }
 
     return DropdownButtonFormField<int>(
       decoration: const InputDecoration(
-          labelText: "Minute",
+          labelText: "Seconde",
           suffixIcon: Icon(
             FontAwesomeIcons.stopwatch20,
           )),

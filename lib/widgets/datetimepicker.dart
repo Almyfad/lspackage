@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+@Deprecated('Use [datepicker.widget.dart + timepicker.widget.dart]')
 class LsDatetimePicker extends StatelessWidget {
   final String? Function(String?)? validator;
   final Function(DateTime?)? onDatePicked;
