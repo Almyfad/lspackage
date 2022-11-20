@@ -15,8 +15,7 @@ class PopupItemNoInkWell<T> extends PopupMenuEntry<T> {
     this.textStyle,
     this.mouseCursor,
     required this.child,
-  })  : assert(enabled != null),
-        assert(height != null);
+  });
 
   /// The value that will be returned by [showMenu] if this entry is selected.
   final T? value;
