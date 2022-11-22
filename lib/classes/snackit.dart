@@ -19,7 +19,7 @@ class Snackit {
         elevation: 5.0,
       ));
 
-  static sucess(String msg, BuildContext context) =>
+  static sucess(BuildContext context, {String? title, String? message}) =>
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: Colors.green,
         content: Row(
@@ -31,7 +31,7 @@ class Snackit {
               ),
             ),
             Text(
-              msg,
+              message ?? "",
               style: const TextStyle(color: Colors.white),
             ),
           ],
