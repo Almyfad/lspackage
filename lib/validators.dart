@@ -39,7 +39,7 @@ class DecimalValidator extends Validators {
         if (pattern == null) return true;
         if ((pattern as String).isEmpty) return true;
         RegExp regExp = RegExp(
-          r"^\d+.?\d+$",
+          r"^\d+(.\d+)*$",
           caseSensitive: false,
           multiLine: false,
         );
