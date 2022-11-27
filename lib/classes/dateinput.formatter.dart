@@ -171,9 +171,7 @@ class DateInputFormatter extends TextInputFormatter {
 
           return newValue.copyWith(
               text: "${pday.toString().padLeft(2, "0")}/${month()}/${year()}",
-              selection: const TextSelection(
-                  baseOffset: 10,
-                  extentOffset: 10));
+              selection: const TextSelection(baseOffset: 10, extentOffset: 10));
         }
         return oldValue;
       default:
