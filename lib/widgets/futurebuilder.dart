@@ -26,11 +26,8 @@ class LSFutureBuilder<T> extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return const Center(
-                child: SizedBox(
-                  height: 70,
-                  child: SomethingWenWrong(
-                    msg: "network issue",
-                  ),
+                child: SomethingWenWrong(
+                  msg: "network issue",
                 ),
               );
             case ConnectionState.waiting:
@@ -45,11 +42,8 @@ class LSFutureBuilder<T> extends StatelessWidget {
               if (snapshot.hasError) {
                 return error ??
                     Center(
-                      child: SizedBox(
-                        height: 70,
-                        child: SomethingWenWrong(
-                          msg: snapshot.error.toString(),
-                        ),
+                      child: SomethingWenWrong(
+                        msg: snapshot.error.toString(),
                       ),
                     );
               }
