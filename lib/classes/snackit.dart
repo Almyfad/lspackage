@@ -12,7 +12,7 @@ class Snackit {
                 color: Colors.blueAccent,
               ),
             ),
-            Text(msg),
+            Expanded(child: Text(msg)),
           ],
         ),
         behavior: SnackBarBehavior.floating,
@@ -30,9 +30,11 @@ class Snackit {
                 Icons.verified,
               ),
             ),
-            Text(
-              message ?? "",
-              style: const TextStyle(color: Colors.white),
+            Expanded(
+              child: Text(
+                message ?? "",
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
