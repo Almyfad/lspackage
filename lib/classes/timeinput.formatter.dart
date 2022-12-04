@@ -124,4 +124,3 @@ class TimeInputFormatter extends TextInputFormatter {
     }
   }
 }
-

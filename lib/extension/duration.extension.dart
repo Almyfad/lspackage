@@ -6,5 +6,4 @@ extension DurationExtension on Duration {
   String get remainingSeconds => _twoDigits(inSeconds.remainder(60));
   String get toHHMM => "$toHH:$remainingMinutes";
   String get toHHMMSS => "$toHHMM:$remainingSeconds";
-
 }

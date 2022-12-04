@@ -66,7 +66,6 @@ class PopupItemNoInkWell<T> extends PopupMenuEntry<T> {
   /// that is also null, then [MaterialStateMouseCursor.clickable] is used.
   final MouseCursor? mouseCursor;
 
-
   final Widget? child;
 
   @override
@@ -78,10 +77,8 @@ class PopupItemNoInkWell<T> extends PopupMenuEntry<T> {
 }
 
 class PopupDatetimeState<T, W extends PopupItemNoInkWell<T>> extends State<W> {
-
   @protected
   Widget? buildChild() => widget.child;
-
 
   @override
   Widget build(BuildContext context) {

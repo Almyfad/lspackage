@@ -6,7 +6,8 @@ class LSFutureBuilder<T> extends StatelessWidget {
   final Widget? progressIndicator;
   final Widget? noelement;
   final Widget? error;
-  final Widget Function(BuildContext context, AsyncSnapshot<T> snapshot) builder;
+  final Widget Function(BuildContext context, AsyncSnapshot<T> snapshot)
+      builder;
 
   const LSFutureBuilder(
       {Key? key,

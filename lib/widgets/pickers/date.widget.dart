@@ -63,12 +63,14 @@ class LSDatePicker extends StatelessWidget {
             hintText: "--/--/---",
             suffixIcon: PopupMenuButton(
               icon: const Icon(Icons.calendar_month),
-              constraints: BoxConstraints(maxWidth: max(constraints.maxWidth,300),),
+              constraints: BoxConstraints(
+                maxWidth: max(constraints.maxWidth, 300),
+              ),
               itemBuilder: (context) {
                 return [
                   PopupItemNoInkWell(
                     child: SizedBox(
-                        width: max(constraints.maxWidth,300),
+                        width: max(constraints.maxWidth, 300),
                         child: SfDateRangePicker(
                           enablePastDates: true,
                           allowViewNavigation: true,
