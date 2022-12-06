@@ -22,7 +22,7 @@ class ImageHandler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (future != null) {
-      return ImageFromStorageLoader(
+      return LSImageFromStorageLoader(
         fit: fit,
         future: future!,
         width: width,
@@ -61,50 +61,101 @@ class ImageFromFileBytes extends StatelessWidget {
   }
 }
 
-class ImageFromStorageLoader extends StatelessWidget {
-  const ImageFromStorageLoader({
+class LSImageFromStorageLoader extends StatelessWidget {
+  const LSImageFromStorageLoader({
     Key? key,
     this.height,
     this.width,
     required this.future,
     this.fit,
+    this.aspectRatio,
+    this.aspectRatioOnError,
+    this.widgetError,
   }) : super(key: key);
   final double? height;
   final double? width;
-  final Future<String> future;
+  final Future<String?> future;
   final BoxFit? fit;
+  final double? aspectRatio;
+  final double? aspectRatioOnError;
+  final Widget? widgetError;
 
   @override
   Widget build(BuildContext context) {
-    return LSFutureBuilder<String?>(
+    var lsFutureBuilder = LSFutureBuilder<String?>(
       future: future,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snap) {
+      builder: (BuildContext context, snap) {
         if (snap.data == null) {
-          return const Center(
-            child: Icon(Icons.error),
+          return _CustomAspectRation(
+            aspectRatio: aspectRatioOnError,
+            child: widgetError ??
+                const Opacity(
+                  opacity: 0.5,
+                  child: Center(
+                    child: Icon(
+                      Icons.cancel,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
           );
         }
-        return Image.network(
-          snap.data,
-          width: width,
-          height: height,
-          fit: fit,
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) {
-              return child;
-            }
-            return Center(
-              child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
-            );
-          },
+        if (snap.data!.isEmpty) {
+          return _CustomAspectRation(
+            aspectRatio: aspectRatioOnError,
+            child: widgetError ??
+                const Opacity(
+                  opacity: 0.5,
+                  child: Center(
+                    child: Icon(
+                      Icons.warning_outlined,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+          );
+        }
+        return _CustomAspectRation(
+          aspectRatio: aspectRatio,
+          child: Image.network(
+            snap.data!,
+            width: width,
+            height: height,
+            fit: fit,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              return Center(
+                child: CircularProgressIndicator(
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
+              );
+            },
+          ),
         );
       },
     );
+    return lsFutureBuilder;
+  }
+}
+
+class _CustomAspectRation extends StatelessWidget {
+  final double? aspectRatio;
+  final Widget child;
+  const _CustomAspectRation({
+    Key? key,
+    this.aspectRatio,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (aspectRatio == null) return child;
+    return AspectRatio(aspectRatio: aspectRatio!, child: child);
   }
 }

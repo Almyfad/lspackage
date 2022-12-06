@@ -4,10 +4,12 @@ import 'package:lspackage/widgets/imageuploader/imagehandler.wiget.dart';
 
 class LSSingleImagePicker extends StatefulWidget {
   final Image? initialImage;
+  final Future<String?>? initialImagfuture;
   final ValueChanged<PlatformFile> onFilePicked;
   const LSSingleImagePicker({
     Key? key,
     this.initialImage,
+    this.initialImagfuture,
     required this.onFilePicked,
   }) : super(key: key);
 
@@ -33,7 +35,7 @@ class _SingleImagePickerState extends State<LSSingleImagePicker> {
       return InkWell(onTap: pickimage, child: widget.initialImage!);
     }
 
-    return InkWell(
+    var emptypicker = InkWell(
       onTap: pickimage,
       child: ColoredBox(
         color: Theme.of(context).backgroundColor.withOpacity(0.5),
@@ -51,6 +53,18 @@ class _SingleImagePickerState extends State<LSSingleImagePicker> {
         ),
       ),
     );
+
+    if (widget.initialImagfuture != null) {
+      return InkWell(
+        onTap: pickimage,
+        child: LSImageFromStorageLoader(
+          widgetError: emptypicker,
+          future: widget.initialImagfuture!,
+        ),
+      );
+    }
+
+    return InkWell(onTap: pickimage, child: emptypicker);
   }
 
   void pickimage() async {
