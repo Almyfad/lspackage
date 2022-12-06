@@ -47,7 +47,7 @@ class LSFutureBuilder<T> extends StatelessWidget {
                       ),
                     );
               }
-              if (!snapshot.hasData) {
+              if (snapshot.hasData==false && (null is T) == false ) {
                 return noelement ??
                     const Center(
                       child: SizedBox(
