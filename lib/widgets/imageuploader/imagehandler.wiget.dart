@@ -48,16 +48,21 @@ class ImageFromFileBytes extends StatelessWidget {
   final double? height;
   final double? width;
   final PlatformFile file;
+  final BoxFit? fit;
+  final Alignment alignment;
   const ImageFromFileBytes({
     Key? key,
     this.height,
     this.width,
     required this.file,
+    this.fit,
+    this.alignment = Alignment.center,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Image.memory(file.bytes!, width: width, height: height);
+    return Image.memory(file.bytes!,
+        width: width, height: height, fit: fit, alignment: alignment);
   }
 }
 
@@ -71,6 +76,7 @@ class LSImageFromStorageLoader extends StatelessWidget {
     this.aspectRatio,
     this.aspectRatioOnError,
     this.widgetError,
+    this.alignment = Alignment.center,
   }) : super(key: key);
   final double? height;
   final double? width;
@@ -79,6 +85,7 @@ class LSImageFromStorageLoader extends StatelessWidget {
   final double? aspectRatio;
   final double? aspectRatioOnError;
   final Widget? widgetError;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +126,7 @@ class LSImageFromStorageLoader extends StatelessWidget {
           aspectRatio: aspectRatio,
           child: Image.network(
             snap.data!,
+            alignment: alignment,
             width: width,
             height: height,
             fit: fit,

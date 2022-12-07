@@ -27,7 +27,7 @@ String getmimeTypeFromExtension(String? extension) {
   }
 }
 
-class FileUploadManager {
+class LSFileUploadManager {
   static Future<bool?> show(
       BuildContext context,
       String imagePath,
