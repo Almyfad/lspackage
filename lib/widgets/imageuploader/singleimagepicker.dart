@@ -172,6 +172,7 @@ class __PickedImageHandlerState extends State<_PickedImageHandler> {
         }
       },
       child: GestureDetector(
+        onTap: widget.onTap ,
         onPanUpdate: moveimage,
         onPanEnd: (details) => widget.onAlignmentChanged?.call(imageAlignement),
         child: Stack(
