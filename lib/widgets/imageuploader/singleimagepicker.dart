@@ -71,14 +71,15 @@ class _SingleImagePickerState extends State<LSSingleImagePicker> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           Icon(Icons.camera_alt_sharp,
               color: widget.pickerforegroundColor ?? Colors.black54),
           Text(
             widget.pickerText ?? "Cliquez pour ajouter une photo",
+            textAlign: TextAlign.center,
             style: TextStyle(
-                color: widget.pickerforegroundColor ?? Colors.black54),
+                color: widget.pickerforegroundColor ?? Colors.black54,),
           )
         ],
       ),
@@ -190,6 +191,7 @@ class __PickedImageHandlerState extends State<_PickedImageHandler> {
                       Icon(Icons.arrow_drop_down_outlined, color: Colors.white),
                       Text(
                         "Glissez pour faire monter ou descendre l'image",
+                        textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
