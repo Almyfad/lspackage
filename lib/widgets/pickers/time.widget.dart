@@ -107,7 +107,7 @@ class LSTimePicker extends StatelessWidget {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: LSMinutePicker(
-                                        value: lsController.value?.hour ?? 0,
+                                        value: lsController.value?.minute ?? 0,
                                         onPicked: (minute) {
                                           lsController.minute = minute!;
                                         },
