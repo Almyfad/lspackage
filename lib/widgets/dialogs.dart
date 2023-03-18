@@ -14,7 +14,7 @@ class LsDialog {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor:
-                      cancelButtonColor ?? Theme.of(context).errorColor),
+                      cancelButtonColor ?? Theme.of(context).colorScheme.error),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },

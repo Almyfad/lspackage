@@ -66,7 +66,7 @@ class _SingleImagePickerState extends State<LSSingleImagePicker> {
     var emptypicker = Container(
       decoration: BoxDecoration(
           color: widget.pickerbackgroundColor ??
-              Theme.of(context).backgroundColor.withOpacity(0.5),
+              Theme.of(context).colorScheme.background.withOpacity(0.5),
           image: widget.pickerImageBackground),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
