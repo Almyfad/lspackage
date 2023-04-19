@@ -1,4 +1,21 @@
+
+class LSValidator {
+
+  final List<Validators> validators;
+
+  LSValidator(this.validators);
+  String? validate<T>(String? pattern) {
+    for (dynamic validator in validators) {
+      if (validator.validate<T>(pattern) == false) {
+        return validator.errorMessage;
+      }
+    }
+    return null;
+  }
+}
+
 class Validators {
+  @Deprecated('Use Constructor instead')
   static String? validate<T>(T? pattern, Iterable<Validators> validators) {
     for (dynamic validator in validators) {
       if (validator.validate<T>(pattern) == false) {
@@ -207,6 +224,94 @@ class PasswordComplexityValidator extends Validators {
       return false;
     }
 
+    return true;
+  }
+}
+
+class CodePostalValidator extends Validators {
+  String errorMessage;
+  CodePostalValidator({
+    this.errorMessage = "Le code postal n'est pas valide",
+  });
+
+  bool validate<T>(T? pattern) {
+    if (pattern == null) return false;
+    String input = pattern.toString().trim().replaceAll(RegExp(r'\D'), ''); // enlève tous les caractères non numériques et les espaces
+    if (input.length != 5) return false; // un code postal valide doit avoir 5 chiffres
+    return true;
+  }
+}
+
+class SiretValidator extends Validators {
+  String errorMessage;
+  SiretValidator({
+    this.errorMessage = "Le numéro SIRET n'est pas valide",
+  });
+
+  bool validate<T>(T? pattern) {
+    if (pattern == null) return false;
+    String input = pattern.toString().replaceAll(RegExp(r'\D'), ''); // enlève tous les caractères non numériques
+    if (input.length != 14) return false; // un numéro SIRET valide doit avoir 14 chiffres
+    int sum = 0;
+    for (int i = 0; i < input.length; i++) {
+      int digit = int.parse(input[i]);
+      if (i % 2 == 0) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+      sum += digit;
+    }
+    return sum % 10 == 0;
+  }
+}
+
+class SirenValidator extends Validators {
+  String errorMessage;
+  SirenValidator({
+    this.errorMessage = "Le numéro SIREN n'est pas valide",
+  });
+
+  bool validate<T>(T? pattern) {
+    if (pattern == null) return false;
+    String input = pattern.toString().replaceAll(RegExp(r'\D'), ''); // enlève tous les caractères non numériques
+    if (input.length != 9) return false; // un numéro SIREN valide doit avoir 9 chiffres
+    int sum = 0;
+    for (int i = 0; i < input.length; i++) {
+      int digit = int.parse(input[i]);
+      if (i % 2 == 1) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+      sum += digit;
+    }
+    return sum % 10 == 0;
+  }
+}
+
+class CodeAPEValidator extends Validators {
+  String errorMessage;
+  CodeAPEValidator({
+    this.errorMessage = "Le code APE n'est pas valide",
+  });
+
+  bool validate<T>(T? pattern) {
+    if (pattern == null) return false;
+    String input = pattern.toString().trim().toUpperCase();
+    if (!RegExp(r'^[0-9]{2}\.?[0-9]{2}[A-Z]{1}$').hasMatch(input)) return false; // un code APE valide doit être composé d'une lettre suivie de 4 chiffres
+    return true;
+  }
+}
+
+class IDCCValidator extends Validators {
+  String errorMessage;
+  IDCCValidator({
+    this.errorMessage = "Le code IDCC n'est pas valide",
+  });
+
+  bool validate<T>(T? pattern) {
+    if (pattern == null) return false;
+    String input = pattern.toString().trim().toUpperCase();
+    if (!RegExp(r'^[0-9]{4}$').hasMatch(input)) return false; // un code APE valide doit être composé d'une lettre suivie de 4 chiffres
     return true;
   }
 }
