@@ -183,10 +183,10 @@ class __PickedImageHandlerState extends State<_PickedImageHandler> {
               child: Container(
                   width: double.infinity,
                   color: Colors.black45.withOpacity(0.5),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children:const  [
+                    children:[
                       Icon(Icons.arrow_drop_up_outlined, color: Colors.white),
                       Icon(Icons.mouse_sharp, color: Colors.white),
                       Icon(Icons.arrow_drop_down_outlined, color: Colors.white),
